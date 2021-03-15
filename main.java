@@ -22,7 +22,7 @@ public class main {
             return false;
         }
 
-        //Checking if there is only latin letters, digits and braces '[' & ']'.
+        //Checking if there are only latin letters, digits and braces '[' & ']'.
         strToCheck = strToCheck.replace('[', ' ');
         strToCheck = strToCheck.replace(']', ' ');
         strToCheck = strToCheck.replaceAll(" ", "");
