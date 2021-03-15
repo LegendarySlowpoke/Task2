@@ -1,71 +1,29 @@
-package server.workTask2;
+class StringDecoder {
 
-import java.util.Scanner;
+    private final String stringToDecode;
+    private String decodedString;
 
-public class StringDecoder {
-
-    private String usInput;
-
-    StringDecoder() {
-        usInput = new Scanner(System.in).nextLine();
+    public String getDecodedString() {
+        return decodedString;
     }
 
-    protected void launch() {
+    protected StringDecoder(String stringToDecode) {
+        this.stringToDecode = stringToDecode;
+    }
+
+    protected boolean launch() {
         try {
-            if (checkValidity(usInput)) {
-                System.out.println(worker(usInput));
-            }
+            decodedString = decode(stringToDecode);
+            return true;
         } catch (Exception e) {
             e.printStackTrace();
-        }
-    }
-
-    private boolean checkValidity(String strToCheck) {
-        if (checkBraces(strToCheck) && checkSymbols(strToCheck)) {
-            return true;
-        } else {
             return false;
         }
     }
 
-    private boolean checkBraces(String strToCheck) {
-        int braceChecker = 0;
-        //Checking braces order
-        for (int i = 0; i < strToCheck.length(); i++) {
-            if (String.valueOf(strToCheck.charAt(i)).equals("[")) {
-                braceChecker++;
-            } else if (String.valueOf(strToCheck.charAt(i)).equals("]")) {
-                braceChecker--;
-            } else {
-            }
 
-            if (braceChecker < 0) {
-                return false;
-            }
-        }
-        //Checking if there is equal quantity of opening and closing braces.
-        if (braceChecker != 0) {
-            return false;
-        }
-        return true;
-    }
-
-    private boolean checkSymbols(String strToCheck) {
-        //Checking if there is only latin letters, digits and braces '[' & ']'.
-        strToCheck = strToCheck.replace('[', ' ');
-        strToCheck = strToCheck.replace(']', ' ');
-        strToCheck = strToCheck.replaceAll(" ", "");
-        strToCheck = strToCheck.replaceAll("[A-Za-z0-9]*", "");
-        if (strToCheck.equals("")) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    private String worker(String inpStr) {
+    private String decode(String inpStr) {
         String data = "";
-
         for (int i = 0; i < inpStr.length(); i++) {
             if (String.valueOf(inpStr.charAt(i)).matches("\\d")) {
                 String index = String.valueOf(inpStr.charAt(i));
@@ -99,7 +57,7 @@ public class StringDecoder {
                         data += inpStr.substring(begIndex + 1, i);
                     }
                 } else {
-                    String reWorked = worker(inpStr.substring(begIndex + 1, i));
+                    String reWorked = decode(inpStr.substring(begIndex + 1, i));
                     for (int j = 0; j < Integer.parseInt(index); j++) {
                         data += reWorked;
                     }
