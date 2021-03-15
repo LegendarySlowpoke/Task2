@@ -21,7 +21,6 @@ class StringDecoder {
         }
     }
 
-
     private String decode(String inpStr) {
         String data = "";
         for (int i = 0; i < inpStr.length(); i++) {
