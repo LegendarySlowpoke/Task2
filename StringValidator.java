@@ -17,7 +17,6 @@ public class StringValidator {
     private boolean checkBracesAndOrder() {
         int braceChecker = 0;
         for (int i = 0; i < strToCheck.length(); i++) {
-            System.out.println("    i = " + i);
             if (String.valueOf(strToCheck.charAt(i)).equals("[")) {
                 braceChecker++;
             } else if (String.valueOf(strToCheck.charAt(i)).equals("]")) {
@@ -28,9 +27,6 @@ public class StringValidator {
                     if (!String.valueOf(strToCheck.charAt(i + 1)).equals("[") &&
                             !String.valueOf(strToCheck.charAt(i + 1)).matches("\\d")) {
                         String str = String.valueOf(strToCheck.charAt(i + 1));
-                        System.out.println(str + "\n");
-                        System.out.println("VALIDATOR ERROR i = " + strToCheck.charAt(i) +
-                                ", (i + 1) = " + strToCheck.charAt(i + 1));
                         return false;
                     }
                 }
