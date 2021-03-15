@@ -3,8 +3,6 @@ import java.util.Scanner;
 public class main {
 
     private static boolean checkValidity(String strToCheck) {
-        System.out.println("\nLaunching checkValidity()!");
-        //Checking braces:
         int braceChecker = 0;
         //Checking braces order
         for (int i = 0; i < strToCheck.length(); i++) {
@@ -23,18 +21,15 @@ public class main {
         if (braceChecker != 0) {
             return false;
         }
-        System.out.println("    Braces test passed successfully!");
 
         //Checking if there is only latin letters, digits and braces '[' & ']'.
-        strToCheck.replaceAll("[A-Za-z0-9]*", "");
-        strToCheck.replace('[', ' ');
-        strToCheck.replace(']', ' ');
-        strToCheck.replaceAll(" ", "");
+        strToCheck = strToCheck.replace('[', ' ');
+        strToCheck = strToCheck.replace(']', ' ');
+        strToCheck = strToCheck.replaceAll(" ", "");
+        strToCheck = strToCheck.replaceAll("[A-Za-z0-9]*", "");
         if (strToCheck.equals("")) {
-            System.out.println("checkValidity returns true:\nstrToCheck == '" + strToCheck + "'.\n");
             return true;
         } else {
-            System.out.println("checkValidity returns false:\nstrToCheck == '" + strToCheck + "'.\n");
             return true;
         }
     }
