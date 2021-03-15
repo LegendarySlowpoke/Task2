@@ -2,9 +2,12 @@ import java.util.Scanner;
 
 public class Worker {
 
+    private boolean readerSuccess = false;
+    private String userInputString;
+
     protected void launch() {
-        String userInputString = readInputString();
-        if (userInputString != null) {
+        readInputString();
+        if (readerSuccess) {
             if (new StringValidator(userInputString).checkValidity()) {
                 StringDecoder decoder = new StringDecoder(userInputString);
                 if (decoder.launch()) {
@@ -18,15 +21,14 @@ public class Worker {
         }
     }
 
-    private String readInputString() {
+    private void readInputString() {
         try {
             Scanner scanner = new Scanner(System.in);
-            String userInp = scanner.nextLine();
+            userInputString = scanner.nextLine();
             scanner.close();
-            return userInp;
+            readerSuccess = true;
         } catch (Exception e) {
             e.printStackTrace();
-            return null;
         }
     }
 }
