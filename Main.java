@@ -1,6 +1,7 @@
 public class Main {
 
     public static void main(String args[]) {
-        new Worker().launch();
+        Worker worker = new Worker();
+        worker.launch();
     }
 }
